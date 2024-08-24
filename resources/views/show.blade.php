@@ -12,8 +12,26 @@
     <p>{{ $task->created_at }}</p>
     <p>{{ $task->updated_at }}</p>
 
+    <p>
+        @if ($task->completed)
+            Завершена
+        @else
+            В работе
+        @endif
+    </p>
+
     <div class="">
         <a href="{{ route('tasks.edit', ['task' => $task]) }}">Изменить</a>
+    </div>
+
+    <div class="">
+        <form action="{{ route('tasks.toggle-complete', ['task' => $task]) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <button type="submit">
+                {{ $task->completed ? 'Вернуть в работу' : 'Завершить' }}
+            </button>
+        </form>
     </div>
 
     <div class="">
