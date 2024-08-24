@@ -10,4 +10,10 @@
     @empty
         <div class="">Задач нет, но вы держитесь!</div>
     @endforelse
+
+    @if($tasks->count())
+        <nav>
+            {{ $tasks->links() }}
+        </nav>
+    @endif
 @endsection
